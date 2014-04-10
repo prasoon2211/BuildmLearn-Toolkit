@@ -15,5 +15,6 @@
         <file>images/simulator.png</file>
         <file>images/open.png</file>
         <file>images/FlashCardsTemplate.png</file>
+        <file>images/Translate.png</file>
     </qresource>
 </RCC>

@@ -29,6 +29,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "GlobalData.h"
+#include "translatewindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
@@ -70,6 +71,7 @@ MainWindow::MainWindow(QWidget *parent) :
     buildAct = new QAction(QIcon(":/images/generate.png"),tr("&Generate Application"), this);
     howitworksAct = new QAction(QIcon(":/images/help.png"),tr("&How it works"), this);
     aboutAct = new QAction(QIcon(":/images/about.png"),tr("&About"), this);
+    translateAct = new QAction(QIcon(":/images/Translate.png"), tr("&Translate Tools"), this);
 
     fileMenu->addAction(newAct);
     fileMenu->addAction(saveAct);
@@ -96,6 +98,8 @@ MainWindow::MainWindow(QWidget *parent) :
     toolBar->addAction(howitworksAct);
     toolBar->addSeparator();
     toolBar->addAction(aboutAct);
+    toolBar->addSeparator();
+    toolBar->addAction(translateAct);
 
     connect(iNewProjectWidget, SIGNAL(startProject(int)), this, SLOT(startProject(int)));
     connect(aboutAct, SIGNAL(triggered()), this ,SLOT(aboutClicked()));
@@ -105,6 +109,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(howitworksAct, SIGNAL(triggered()), this ,SLOT(helpClicked()));
     connect(buildAct, SIGNAL(triggered()), this ,SLOT(generateClicked()));
     connect(exitAct, SIGNAL(triggered()), this ,SLOT(close()));
+    connect(translateAct, SIGNAL(triggered()), this ,SLOT(translateClicked()));
 }
 
 MainWindow::~MainWindow()
@@ -207,13 +212,12 @@ void MainWindow::newClicked()
 
 void MainWindow::aboutClicked()
 {
-
     QMessageBox::information(this,"About" , "BuildmLearn Toolkit\nVersion 2.0.0\n\nBuildmLearn Toolkit is an easy-to-use program that helps the users make mobile apps without any knowledge of application development. The toolkit helps creating mobile application with various functionality and allows teachers to input their custom content. Targeted at teachers, this toolkit helps them make learning fun and engaging through mobile apps.\n\nFor more information visit: http://buildmlearn.org \n\nContact the developers at BuildmLearn Google Group (https://groups.google.com/forum/#!forum/buildmlearn) for any other information or suggestions. Alternatively, you can email the core developers at croozeus@gmail.com. ");
 }
 
 void MainWindow::helpClicked()
 {
- QDesktopServices::openUrl(QString(HELP_URL));
+    QDesktopServices::openUrl(QString(HELP_URL));
 }
 
 void MainWindow::generateClicked()
@@ -234,6 +238,12 @@ void MainWindow::generateClicked()
     {
         ((FlashcardTemplate*)iStackedWidget->currentWidget())->on_generateButton_clicked();
     }
+}
+
+void MainWindow::translateClicked()
+{
+    iTranslateWindow = new TranslateWindow(this);
+    iTranslateWindow->show();
 }
 
 void MainWindow::startProject(int index)

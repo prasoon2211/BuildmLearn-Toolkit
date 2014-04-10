@@ -13,7 +13,8 @@ SOURCES += main.cpp\
     InfoTemplate.cpp \
     QuizTemplate.cpp \
     QuestionItem.cpp \
-    FlashcardTemplate.cpp
+    FlashcardTemplate.cpp \
+    translatewindow.cpp
 
 HEADERS  +=  mainwindow.h \
     newprojectwidget.h \
@@ -21,7 +22,8 @@ HEADERS  +=  mainwindow.h \
     InfoTemplate.h \
     QuizTemplate.h \
     QuestionItem.h \
-    FlashcardTemplate.h
+    FlashcardTemplate.h \
+    translatewindow.h
 
 FORMS    += mainwindow.ui
 
@@ -30,3 +32,8 @@ OTHER_FILES += \
 
 RESOURCES += \
     images.qrc
+
+LIBS += -lzmq
+LIBS += -L"c:/MinGW/lib/"
+
+INCLUDEPATH += "c:/MinGW/include/"

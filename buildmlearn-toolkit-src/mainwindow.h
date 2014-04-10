@@ -35,6 +35,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #include "InfoTemplate.h"
 #include "QuizTemplate.h"
 #include "FlashcardTemplate.h"
+#include "translatewindow.h"
 
 #define HELP_URL "http://buildmlearn.wordpress.com/download/"
 
@@ -62,6 +63,7 @@ public slots:
     void openClicked();
     void loadOpenFile();
     void resetWidgets();
+    void translateClicked();
 private:
     // Menus
     QMenu *fileMenu;
@@ -76,6 +78,7 @@ private:
     QAction *buildAct;
     QAction *howitworksAct;
     QAction *aboutAct;
+    QAction *translateAct;
 
     // Toolbar
     QToolBar* toolBar;
@@ -94,6 +97,8 @@ private:
     QuizTemplate* iQuizTemplateWidget;
     // Create Flashcards Widget
     FlashcardTemplate* iFlashCardsWidget;
+    // Translate widget
+    TranslateWindow* iTranslateWindow;
 };
 
 #endif // MAINWINDOW_H
